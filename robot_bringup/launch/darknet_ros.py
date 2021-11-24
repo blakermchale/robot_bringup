@@ -38,6 +38,10 @@ def launch_setup(context, *args, **kwargs):
             "config_path": largs["yolo_config_path"], 
             "weights_path": largs["yolo_weights_path"],
         },
-        ])
+        ],
+        # arguments=[
+        #             "--ros-args", "--log-level", f"darknet_ros:=DEBUG"
+        # ],
+        )
     )
     return ld
