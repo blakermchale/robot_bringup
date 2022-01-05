@@ -14,7 +14,7 @@ YOLO_MAIN_PATH = os.path.join(darknet_ros_share,"yolo_network_config")
 YOLO_WEIGHTS_DEFAULT = os.path.join(YOLO_MAIN_PATH,"weights")
 YOLO_CONFIG_DEFAULT = os.path.join(YOLO_MAIN_PATH,"cfg")
 ROS_PARAM_DEFAULT = os.path.join(robot_bringup_share,"config","darknet_ros.yaml")
-NETWORK_PARAM_DEFAULT = os.path.join(darknet_ros_share,"config","yolov2-tiny.yaml")
+NETWORK_PARAM_DEFAULT = os.path.join(darknet_ros_share,"config","yolov4-tiny.yaml")
 LAUNCH_ARGS = [
     {"name":"yolo_weights_path",       "default":YOLO_WEIGHTS_DEFAULT,        "description":"Path to YOLO weights."},
     {"name":"yolo_config_path",        "default":YOLO_CONFIG_DEFAULT,         "description":"Path to YOLO config."},
@@ -45,7 +45,10 @@ def launch_setup(context, *args, **kwargs):
             #             "--ros-args", "--log-level", f"darknet_ros:=DEBUG"
             # ],
             remappings=[
-                ("/camera/image_raw/compressed", f"/{largs['namespace']}/realsense/color/image_raw/compressed")
+                # ("/camera/image_raw/compressed", f"/{largs['namespace']}/realsense/color/image_raw/compressed")
+                ("/darknet_ros/bounding_boxes", f"/{largs['namespace']}/darknet_ros/bounding_boxes"),
+                ("/darknet_ros/detection_image", f"/{largs['namespace']}/darknet_ros/detection_image"),
+                ("/darknet_ros/found_object", f"/{largs['namespace']}/darknet_ros/found_object")
             ]
         ),
         Node(
