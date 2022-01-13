@@ -1,0 +1,17 @@
+drone_0:
+  x: "-0.5"  #m
+  y: "0.0"  #m
+  z: "0.15"  #m
+  roll: "0.0"  #deg
+  pitch: "0.0"  #deg
+  yaw: "0.0"  #deg
+  api: "inherent"
+  model_name: "x3_ignition_realsense"
+  vehicle_type: "drone"
+  # use_darknet: "true"
+  # tf_processor:  #namespace is added to the front of all tf frames (keys), ex: darknet/fire_hydrant -> drone_0/darknet/fire_hydrant
+  #   darknet/fire_hydrant: "raw"  #raw,average
+# drone_px4:
+#   api: "mavros"
+#   model_name: "x3_mavlink"
+#   vehicle_type: "drone"

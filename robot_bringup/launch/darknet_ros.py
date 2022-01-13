@@ -20,7 +20,8 @@ LAUNCH_ARGS = [
     {"name":"yolo_config_path",        "default":YOLO_CONFIG_DEFAULT,         "description":"Path to YOLO config."},
     {"name":"ros_param_file",          "default":ROS_PARAM_DEFAULT,           "description":"Path to ROS params."},
     {"name":"network_param_file",      "default":NETWORK_PARAM_DEFAULT,       "description":"Path to network params."},
-    {"name":"namespace",               "default":"drone_0",                   "description":"Namespace of node."}
+    {"name":"namespace",               "default":"drone_0",                   "description":"Namespace of node."},
+    {"name":"output",                  "default":"screen",                    "description":"Where to output darknet and bb tf creation."}
 ]
 
 def launch_setup(context, *args, **kwargs):
@@ -34,7 +35,7 @@ def launch_setup(context, *args, **kwargs):
             package='darknet_ros',
             executable='darknet_ros',
             name='darknet_ros',
-            output='screen',
+            output=largs["output"],
             parameters=[largs["ros_param_file"], largs["network_param_file"],
             {
                 "config_path": largs["yolo_config_path"], 
@@ -45,7 +46,7 @@ def launch_setup(context, *args, **kwargs):
             #             "--ros-args", "--log-level", f"darknet_ros:=DEBUG"
             # ],
             remappings=[
-                # ("/camera/image_raw/compressed", f"/{largs['namespace']}/realsense/color/image_raw/compressed")
+                ("/camera/image_raw", f"/{largs['namespace']}/realsense/color/image_raw"),
                 ("/darknet_ros/bounding_boxes", f"/{largs['namespace']}/darknet_ros/bounding_boxes"),
                 ("/darknet_ros/detection_image", f"/{largs['namespace']}/darknet_ros/detection_image"),
                 ("/darknet_ros/found_object", f"/{largs['namespace']}/darknet_ros/found_object")
@@ -55,7 +56,7 @@ def launch_setup(context, *args, **kwargs):
             namespace=f'{largs["namespace"]}',
             package="cv_ros",
             executable="create_bb_tf",
-            output="screen",
+            output=largs["output"],
         )
     ]
     return ld

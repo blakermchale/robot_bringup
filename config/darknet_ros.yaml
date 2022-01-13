@@ -1,31 +1,9 @@
-# /**:
-#   ros__parameters:
-#     subscribers:
-#       camera_reading:
-#         queue_size: 1
-#         it_type: compressed
-#     publishers:
-#       object_detector:
-#         queue_size: 1
-#         latch: false
-#       bounding_boxes:
-#         queue_size: 1
-#         latch: false
-#       detection_image:
-#         queue_size: 1
-#         latch: true
-#     image_view:
-#       enable_opencv: false
-#       wait_key_delay: 3
-#       enable_console_output: true
-
-
 /**:
   ros__parameters:
     image_transport: compressed
     subscribers:
       camera_reading:
-        topic: /drone_0/realsense/color/image_raw
+        topic: /camera/image_raw
         queue_size: 1
     actions:
       camera_reading:
@@ -46,5 +24,4 @@
     image_view:
       enable_opencv: false
       wait_key_delay: 3
-      enable_console_output: true
-
+      # enable_console_output: true
