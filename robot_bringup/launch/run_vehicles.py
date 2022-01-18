@@ -15,7 +15,7 @@ ROBOT_BRINGUP_PKG = get_package_share_directory("robot_bringup")
 
 
 VEHICLE_LAUNCH_ARGS = [
-    {"name": "use_darknet",     "default": "true",      "description": "Flag for turning on darknet nodes and capabilities on single drone.",
+    {"name": "use_darknet",     "default": "false",      "description": "Flag for turning on darknet nodes and capabilities on single drone.",
         "type": "bool"},
 ]
 LAUNCH_ARGS = [
