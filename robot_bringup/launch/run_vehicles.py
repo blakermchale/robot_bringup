@@ -19,7 +19,8 @@ VEHICLE_LAUNCH_ARGS = [
         "type": "bool"},
 ]
 LAUNCH_ARGS = [
-    # {"name": ""}
+    {"name": "use_control_center",    "default": "false",     "description": "Flag for turning on control center capabilities.",
+        "type": "bool"},
 ]
 LAUNCH_ARGS += VEHICLE_LAUNCH_ARGS
 LAUNCH_ARGS += R_LAUNCH_ARGS
@@ -66,5 +67,11 @@ def launch_setup(context, *args, **kwargs):
             Node(package="robot_command", executable="tf_processor",
             output="screen",
             arguments=tf_processor_args),
+        ]
+    if largs["use_control_center"]:
+        ld += [
+            Node(package="robot_command", executable="control_center",
+            namespace="hq",
+            output="screen"),
         ]
     return ld
