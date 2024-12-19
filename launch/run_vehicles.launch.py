@@ -12,10 +12,6 @@ from robot_control.launch.run_vehicles import get_team
 import os
 
 
-ROBOT_COMMAND_PKG = get_package_share_directory("robot_command")
-ROBOT_BRINGUP_PKG = get_package_share_directory("robot_bringup")
-
-
 def launch_setup(args):
     lm = LaunchManager()
     lm.add_include_launch_description("robot_control", "run_vehicles.launch.py")
